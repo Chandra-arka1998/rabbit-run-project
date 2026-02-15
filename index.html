@@ -4,53 +4,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RABBIT RUN | Kinetic Hologram Edition</title>
+  <title>RABBIT RUN | Official Website</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700;900&display=swap');
 
     :root {
-      --bg-white: #ffffff;
       --holo-cyan: rgba(0, 255, 255, 0.5);
       --holo-purple: rgba(191, 0, 255, 0.3);
-      --discord-blurple: #5865F2;
     }
 
     body {
       font-family: 'Rajdhani', sans-serif;
-      background-color: var(--bg-white);
+      background-color: #ffffff;
       color: #1a1a1a;
       overflow-x: hidden;
-      position: relative;
-      line-height: 1.2;
+      margin: 0;
     }
 
-    /* --- BACKGROUND ANIMATION --- */
+    /* --- BACKGROUND SYSTEM --- */
     .hologram-wrapper {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1;
-      /* Menggunakan gambar hologram yang diunggah sebagai base background */
-      background: url('hologram.png'), radial-gradient(circle at 50% 50%, #ffffff 0%, #f4faff 100%);
-      background-size: cover;
+      background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f4faff 100%);
       overflow: hidden;
     }
 
-    .hologram-wrapper::before {
-      content: '';
+    /* Menggunakan gambar hologram yang diunggah jika tersedia */
+    .hologram-bg {
       position: absolute;
-      width: 200%; height: 200%;
-      top: -50%; left: -50%;
-      background: conic-gradient(from 180deg at 50% 50%, #e0faff, #fff0f5, #f5f0ff, #e0faff);
-      animation: rotateHolo 20s linear infinite;
-      filter: blur(80px);
-      opacity: 0.3;
-    }
-
-    @keyframes rotateHolo {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+      width: 100%; height: 100%;
+      background-image: url('hologram.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.2;
     }
 
     .hologram-grid {
@@ -62,43 +51,41 @@
         linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1.5px, transparent 1.5px);
       background-size: 50px 50px;
       transform: perspective(1000px) rotateX(60deg);
-      will-change: transform;
     }
 
-    /* --- KINETIC BUTTONS --- */
+    /* --- ANIMASI TOMBOL --- */
     @keyframes float {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
+      50% { transform: translateY(-10px); }
     }
 
     .btn-kinetic {
       animation: float 4s ease-in-out infinite;
-      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+      transition: all 0.3s ease;
     }
 
     .btn-kinetic:hover {
-      transform: scale(1.05) translateY(-5px) !important;
-      box-shadow: 0 15px 30px rgba(88, 101, 242, 0.3);
+      transform: scale(1.05) !important;
+      filter: brightness(1.1);
     }
 
     /* --- CARDS --- */
     .cyber-card {
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(0, 0, 0, 0.05);
       transition: all 0.4s ease;
     }
 
     .cyber-card:hover {
       border-color: #00d4ff;
-      transform: translateY(-10px);
-      background: rgba(255, 255, 255, 0.8);
+      transform: translateY(-8px);
     }
 
     .scanlines {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.01) 1px, transparent 2px, transparent 4px);
+      background: repeating-linear-gradient(0deg, rgba(0,0,0,0.01) 0px, rgba(0,0,0,0.01) 1px, transparent 1px, transparent 2px);
       pointer-events: none;
       z-index: 50;
     }
@@ -110,127 +97,92 @@
   <div class="scanlines"></div>
 
   <div class="hologram-wrapper">
+    <div class="hologram-bg"></div>
     <div id="grid" class="hologram-grid"></div>
   </div>
 
-  <nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center backdrop-blur-md border-b border-white/20 bg-white/20">
-    <div class="text-3xl font-black italic tracking-tighter text-slate-900">RABBIT <span class="text-cyan-500">RUN</span></div>
-    <div class="flex gap-4 items-center">
-      <a href="https://discord.gg/ZpdtskqUx" target="_blank" class="text-xs font-bold tracking-widest text-[#5865F2] border-b-2 border-[#5865F2] hover:scale-105 transition">DISCORD</a>
-      <a href="https://t.me/rabbit_runProject" target="_blank" class="text-xs font-bold tracking-widest border-b-2 border-black hover:text-cyan-500 transition">TELEGRAM</a>
-      <a href="https://x.com/rabbitrunNft" target="_blank" class="text-xs font-bold tracking-widest border-b-2 border-black hover:text-cyan-500 transition">X.COM</a>
+  <nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center backdrop-blur-md bg-white/30 border-b border-black/5">
+    <div class="text-2xl md:text-3xl font-black italic tracking-tighter text-slate-900">RABBIT <span class="text-cyan-500">RUN</span></div>
+    <div class="flex gap-4">
+      <a href="https://discord.gg/ZpdtskqUx" target="_blank" class="text-[10px] md:text-xs font-bold text-[#5865F2] border-b-2 border-[#5865F2]">DISCORD</a>
+      <a href="https://t.me/rabbit_runProject" target="_blank" class="text-[10px] md:text-xs font-bold border-b-2 border-black">TELEGRAM</a>
     </div>
   </nav>
 
-  <section class="min-h-screen flex flex-col items-center justify-center pt-24 text-center relative px-6">
-    <div class="relative group">
-      <img src="utama.png" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=RabbitRun'" class="w-64 md:w-[420px] z-10 animate__animated animate__pulse animate__infinite animate__slow drop-shadow-2xl" alt="Rabbit Genesis">
-      <div class="absolute inset-0 bg-cyan-200 blur-[80px] opacity-20"></div>
+  <section class="min-h-screen flex flex-col items-center justify-center pt-24 text-center px-6">
+    <div class="relative mb-4">
+      <img src="utama.png" 
+           onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=RabbitGenesis&backgroundColor=b6e3f4'" 
+           class="w-48 md:w-[350px] z-10 animate__animated animate__pulse animate__infinite animate__slow" 
+           alt="Rabbit Genesis">
     </div>
 
-    <h1 class="text-6xl md:text-[8rem] font-black italic tracking-tighter z-10 mt-4 leading-tight uppercase text-slate-900 animate__animated animate__fadeInDown">
+    <h1 class="text-5xl md:text-[7rem] lg:text-[9rem] font-black italic tracking-tighter leading-tight uppercase text-slate-900 animate__animated animate__fadeInUp">
       THE <span class="text-purple-600">RABBIT</span> <span class="text-cyan-500">RUN</span>
     </h1>
 
-    <div class="mt-10 flex flex-wrap justify-center gap-6 z-10">
-      <a href="https://discord.gg/ZpdtskqUx" target="_blank" class="btn-kinetic bg-[#5865F2] text-white font-black px-12 py-4 rounded-full uppercase tracking-tighter shadow-xl" style="animation-delay: 0s;">
+    <div class="mt-8 flex flex-wrap justify-center gap-4 z-10">
+      <a href="https://discord.gg/ZpdtskqUx" target="_blank" class="btn-kinetic bg-[#5865F2] text-white font-black px-8 py-3 rounded-full uppercase text-sm shadow-lg">
         Join Discord
       </a>
-      <a href="https://t.me/rabbit_runProject" target="_blank" class="btn-kinetic bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-black px-12 py-4 rounded-full uppercase tracking-tighter shadow-xl" style="animation-delay: 0.5s;">
+      <a href="https://t.me/rabbit_runProject" target="_blank" class="btn-kinetic bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-black px-8 py-3 rounded-full uppercase text-sm shadow-lg" style="animation-delay: 0.5s;">
         Telegram
       </a>
-      <a href="https://x.com/rabbitrunNft" target="_blank" class="btn-kinetic bg-white border border-slate-200 text-slate-900 font-bold px-12 py-4 rounded-full uppercase shadow-lg" style="animation-delay: 1s;">
+      <a href="https://x.com/rabbitrunNft" target="_blank" class="btn-kinetic bg-white border border-slate-200 text-slate-900 font-bold px-8 py-3 rounded-full uppercase text-sm shadow-md" style="animation-delay: 1s;">
         Follow X
       </a>
     </div>
   </section>
 
-  <section class="py-24 px-6 max-w-7xl mx-auto">
-    <div class="mb-16">
-      <h2 class="text-5xl font-black italic uppercase text-slate-900 leading-none">Star And Rabbit</h2>
-      <p class="text-slate-400 tracking-[0.4em] text-xs font-bold mt-2">COLLECTION ARCHIVE / LIMITED EDITION</p>
+  <section class="py-20 px-6 max-w-7xl mx-auto">
+    <div class="mb-12">
+      <h2 class="text-4xl font-black italic uppercase text-slate-900">Star And Rabbit</h2>
+      <p class="text-slate-400 tracking-[0.3em] text-[10px] font-bold">COLLECTION ARCHIVE / LIMITED EDITION</p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div class="cyber-card p-4 rounded-[2.5rem]">
-        <div class="overflow-hidden rounded-[1.8rem]">
-          <img src="stone1.png" onerror="this.src='https://via.placeholder.com/400x400/00d4ff/ffffff?text=Stone+Island'" class="w-full grayscale hover:grayscale-0 transition-all duration-700 hover:scale-110 aspect-square object-cover">
-        </div>
-        <div class="p-5">
-          <p class="text-[10px] text-cyan-600 uppercase font-extrabold tracking-widest">Tactical Gear</p>
-          <h4 class="font-black uppercase text-xl text-slate-800 italic mt-1">Stone Island V8</h4>
-        </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="cyber-card p-4 rounded-[2rem]">
+        <img src="stone1.png" onerror="this.src='https://via.placeholder.com/400x400/e2e8f0/64748b?text=Stone+Island'" class="w-full rounded-[1.5rem] aspect-square object-cover mb-4 grayscale hover:grayscale-0 transition-all">
+        <p class="text-[9px] text-cyan-600 font-extrabold uppercase tracking-widest">Tactical Gear</p>
+        <h4 class="font-black uppercase text-lg italic text-slate-800">Stone Island V8</h4>
       </div>
 
-      <div class="cyber-card p-4 rounded-[2.5rem]">
-        <div class="overflow-hidden rounded-[1.8rem]">
-          <img 
-            src="sf1.png" 
-            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=400&h=400';" 
-            class="w-full grayscale hover:grayscale-0 transition-all duration-700 hover:scale-110 aspect-square object-cover" 
-            alt="Ryu Fighter"
-          >
-        </div>
-        <div class="p-5">
-          <p class="text-[10px] text-red-500 uppercase font-extrabold tracking-widest">Arcade Series</p>
-          <h4 class="font-black uppercase text-xl text-slate-800 italic mt-1">Ryu Fighter</h4>
-        </div>
+      <div class="cyber-card p-4 rounded-[2rem]">
+        <img src="sf1.png" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&h=400&fit=crop'" class="w-full rounded-[1.5rem] aspect-square object-cover mb-4 grayscale hover:grayscale-0 transition-all">
+        <p class="text-[9px] text-red-500 font-extrabold uppercase tracking-widest">Arcade Series</p>
+        <h4 class="font-black uppercase text-lg italic text-slate-800">Ryu Fighter</h4>
       </div>
 
-      <div class="cyber-card p-4 rounded-[2.5rem]">
-        <div class="relative overflow-hidden rounded-[1.8rem]">
-          <img src="naruto1.png" onerror="this.src='https://via.placeholder.com/400x400/orange/ffffff?text=Naruto+Edition'" class="w-full grayscale hover:grayscale-0 transition-all duration-700 hover:scale-110 aspect-square object-cover">
-          <span class="absolute top-3 left-3 bg-orange-500 text-white text-[9px] font-black px-3 py-1 rounded-full italic shadow-lg">SHINOBI</span>
+      <div class="cyber-card p-4 rounded-[2rem]">
+        <div class="relative">
+          <img src="naruto1.png" onerror="this.src='https://via.placeholder.com/400x400/fed7aa/ea580c?text=Shinobi'" class="w-full rounded-[1.5rem] aspect-square object-cover mb-4 grayscale hover:grayscale-0 transition-all">
+          <span class="absolute top-2 left-2 bg-orange-500 text-white text-[8px] font-black px-2 py-1 rounded-full italic">SHINOBI</span>
         </div>
-        <div class="p-5">
-          <p class="text-[10px] text-orange-600 uppercase font-extrabold tracking-widest">Hidden Leaf</p>
-          <h4 class="font-black uppercase text-xl text-slate-800 italic mt-1">Akatsuki Cloak</h4>
-        </div>
+        <p class="text-[9px] text-orange-600 font-extrabold uppercase tracking-widest">Hidden Leaf</p>
+        <h4 class="font-black uppercase text-lg italic text-slate-800">Akatsuki Cloak</h4>
       </div>
 
-      <div class="cyber-card p-4 rounded-[2.5rem]">
-        <div class="overflow-hidden rounded-[1.8rem]">
-          <img src="cyber1.png" onerror="this.src='https://via.placeholder.com/400x400/4F46E5/ffffff?text=Cyber+Edition'" class="w-full grayscale hover:grayscale-0 transition-all duration-700 hover:scale-110 aspect-square object-cover">
-        </div>
-        <div class="p-5">
-          <p class="text-[10px] text-blue-500 uppercase font-extrabold tracking-widest">Neural Net</p>
-          <h4 class="font-black uppercase text-xl text-slate-800 italic mt-1">Cyber Visor</h4>
-        </div>
+      <div class="cyber-card p-4 rounded-[2rem]">
+        <img src="cyber1.png" onerror="this.src='https://via.placeholder.com/400x400/bfdbfe/2563eb?text=Cyber+Visor'" class="w-full rounded-[1.5rem] aspect-square object-cover mb-4 grayscale hover:grayscale-0 transition-all">
+        <p class="text-[9px] text-blue-500 font-extrabold uppercase tracking-widest">Neural Net</p>
+        <h4 class="font-black uppercase text-lg italic text-slate-800">Cyber Visor</h4>
       </div>
     </div>
   </section>
 
-  <section class="py-24 px-6 max-w-4xl mx-auto border-t border-slate-100">
-    <h2 class="text-5xl font-black mb-12 italic text-slate-900 uppercase">Mission <span class="text-cyan-500">Map</span></h2>
-    <div class="space-y-12 border-l-2 border-slate-200 pl-10">
-      <div class="relative">
-        <div class="absolute -left-[51px] top-1 w-6 h-6 bg-white border-4 border-cyan-500 rounded-full shadow-md"></div>
-        <h3 class="font-black text-2xl uppercase text-slate-800 italic">01. Genesis Drop</h3>
-        <p class="text-slate-500 text-lg mt-2">Launching base character & Airdrop snapshot for early recruits.</p>
-      </div>
-      <div class="relative">
-        <div class="absolute -left-[51px] top-1 w-6 h-6 bg-white border-4 border-[#5865F2] rounded-full shadow-md"></div>
-        <h3 class="font-black text-2xl uppercase text-slate-800 italic">02. Community Expansion</h3>
-        <p class="text-slate-500 text-lg mt-2">Opening the Discord Bunker for whitelist and exclusive trait reveals.</p>
-      </div>
-    </div>
-  </section>
-
-  <footer class="py-24 text-center border-t border-slate-100 bg-white/50">
-    <div class="max-w-2xl mx-auto px-6">
-      <p class="tracking-[0.5em] mb-6 uppercase text-[10px] font-black text-slate-400">Auth Code: 0xd17a2b860a1f4c6fe21d221a1866c6f4a8ff4414</p>
-      <div class="h-px bg-slate-200 w-24 mx-auto mb-6"></div>
-      <p class="font-black text-2xl text-slate-800 italic tracking-tighter uppercase">Rabbit Run Labs <span class="text-cyan-500">2026</span></p>
-    </div>
+  <footer class="py-16 text-center border-t border-slate-100 bg-white/50">
+    <p class="text-[10px] text-slate-400 mb-2">AUTH: 0xd17a2b860a1f4c6fe21d221a1866c6f4a8ff4414</p>
+    <p class="font-black text-xl text-slate-800 italic uppercase">Rabbit Run Labs <span class="text-cyan-500">2026</span></p>
   </footer>
 
   <script>
     const grid = document.getElementById('grid');
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
-      grid.style.transform = `perspective(1000px) rotateX(60deg) translateY(${scrollY * 0.3}px)`;
+      grid.style.transform = `perspective(1000px) rotateX(60deg) translateY(${scrollY * 0.2}px)`;
     }, { passive: true });
   </script>
 
 </body>
 </html>
+
